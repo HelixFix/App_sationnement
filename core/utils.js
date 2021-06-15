@@ -1,3 +1,6 @@
+import { Linking } from "react-native";
+
+
 export const emailValidator = (email) => {
   const regex = /\S+@\S+\.\S+/;
 
@@ -15,3 +18,14 @@ export const nameValidator = (name) => {
   if (!name || name.length === 0) return true;
   return false;
 };
+
+export const _goToURL = (url) => {
+  
+  Linking.canOpenURL(url).then(supported => {
+    if (supported) {
+      Linking.openURL(url);
+    } else {
+      console.log('Impossible d\'ouvrir le lien: ' + url);
+    }
+  });
+}
