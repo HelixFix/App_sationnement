@@ -19,49 +19,22 @@ export default class Map extends React.Component {
       },
       marginBottom: 1
     };
-    // this.onRegionChange = this.onRegionChange.bind(this)
+
 
   }
 
 
   componentDidMount() {
-    this.handleUserLocation();
+    // this.handleUserLocation();
     setTimeout(()=>this.setState({marginBottom : 0}),100)
   }
 
-  handleUserLocation=() => {
-    navigator.geolocation.getCurrentPosition(pos => {
-    //  alert(Json.stringify(pos))
-    this.map.animateToRegion({
-      ...this.state.initialRegion,
-      latitude : pos.coords.latitude,
-      longitude : pos.coords.longitude
-    })
 
-    this.state({
-      ...this.state.initialRegion,
-      latitude : pos.coords.latitude,
-      longitude : pos.coords.longitude
-      // latitude : this.state.location ? pos.coords.latitude : 37,
-      // longitude : this.state.location ? pos.coords.longitude : 122
-    })
-    },
-    err => {
-      console.log(err);
-      alert('Something Went Wrong ! Please select location manually.')
-    }
-    )
-    // alert("Executed")
-  }
-
-  onRegionChange() {
+  onChangeValue = initialRegion =>{
+    // alert(JSON.stringify(region))
+    ToastAndroid.show(JSON.stringify(initialRegion),ToastAndroid.SHORT)
     this.setState({
-      region: {
-        latitude: this.state.location ? this.state.location.coords.latitude: 37,
-        longitude: this.state.location ? this.state.location.coords.longitude: 122,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }
+      initialRegion
     })
   }
 
@@ -74,22 +47,16 @@ export default class Map extends React.Component {
     }
 
  
-    const {coords : {latitude, longitude}} = await Location.getCurrentPositionAsync()
+    let location = await Location.getCurrentPositionAsync({});
+    this.setState({ location: location });
+    // console.log(location);
     
   }
-
-onChangeValue = initialRegion =>{
-  // alert(JSON.stringify(region))
-  ToastAndroid.show(JSON.stringify(initialRegion),ToastAndroid.SHORT)
-  this.setState({
-    initialRegion
-  })
-}
 
  
 
   render() {
-    // this.useEffect()
+    this.useEffect()
    
 
     return (
@@ -97,8 +64,6 @@ onChangeValue = initialRegion =>{
         <MapView style={styles.map}
         showsUserLocation = {true}
         showsMyLocationButton = {true}
-        region={this.state.location}
-        // onRegionChange={this.onRegionChange}
         initialRegion = {this.state.initialRegion}
         onRegionChangeComplete = {this.onChangeValue}
         ref ={ref => this.map = ref}
