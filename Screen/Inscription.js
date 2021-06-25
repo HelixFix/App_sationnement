@@ -10,10 +10,10 @@ import {
   nameValidator,
   passwordValidator,
 } from "../core/utils";
-import { connect } from "react-redux";
 import * as SQLite from 'expo-sqlite'
 
-class Inscription extends React.Component {
+
+export default class Inscription extends React.Component {
   constructor(props) {
     super(props);
 
@@ -136,9 +136,3 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => {
-  return state;
-};
-
-// React autorise uniquement un export default par page
-export default connect(mapStateToProps)(Inscription);

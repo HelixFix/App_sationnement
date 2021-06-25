@@ -4,11 +4,10 @@ import { Alert, StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import Button from "../Components/Button";
 import EmailInput from "../Components/EmailInput";
 import PasswordInput from "../Components/PasswordInput";
-import { connect } from "react-redux";
 import { emailValidator, passwordValidator } from "../core/utils";
 import * as SQLite from 'expo-sqlite'
 
-class Connexion extends React.Component {
+export default class Connexion extends React.Component {
   constructor(props) {
     super(props);
 
@@ -157,9 +156,3 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => {
-  return state;
-};
-
-// React autorise uniquement un export default par page
-export default connect(mapStateToProps)(Connexion);
