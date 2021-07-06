@@ -49,6 +49,12 @@ export default class Accueil extends React.Component {
           title   = "Inscription"
           onPress = {() => navigate("Registerscreen")}
         />
+
+      <Button
+          color   = "#ff5c5c"
+          title   = "Navigation"
+          onPress = {() => navigate("Map")}
+        />
       </View>
     );
   }

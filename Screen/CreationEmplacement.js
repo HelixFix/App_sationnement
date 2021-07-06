@@ -19,12 +19,6 @@ export default class CreationEmplacement extends React.Component {
 
         <Button
           color   = "#ff5c5c"
-          title   = "Navigation"
-          onPress = {() => navigate("Map")}
-        />
-
-        <Button
-          color   = "#ff5c5c"
           title   = "RGPD"
           onPress = {() => navigate("RGPD")}
         />
