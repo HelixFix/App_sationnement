@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Dimensions, Image, ToastAndroid } from "react-n
 import * as Location from "expo-location";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
+import { data } from "../core/data_Mulhouse.json";
 
 
 export default class Map extends React.Component {
@@ -12,10 +13,10 @@ export default class Map extends React.Component {
       location: null,
       ErrorMsg: null,
       initialRegion  : {
-        latitude      : 37.7507406,
-        longitude     : 122.3417348,
+        latitude      : 47.7471564615,
+        longitude     : 7.32070858826,
         latitudeDelta : 0.0922,
-        longitudeDelta: Dimensions.get('window').width / Dimensions.get('window').height,
+        longitudeDelta: Dimensions.get('window').width*0.25 / Dimensions.get('window').height*0.25,
       },
       marginBottom: 1
     };
@@ -52,23 +53,34 @@ export default class Map extends React.Component {
     // console.log(location);
     
   }
-
  
+  mapMarkers() {
+    return (
+    data && data.forEach (<Marker
+      key={data.key}
+      coordinates={{ latitude: data.latitude, longitude: data.longitude }}
+      title={data.nbre_place}
+      //description={data.nbre_place}
+    >
+    </Marker >))
+  }
 
   render() {
     this.useEffect()
-   
+   console
 
     return (
       <View style={{flex:1,marginBottom : this.state.marginBottom}}>
         <MapView style={styles.map}
         showsUserLocation = {true}
-        showsMyLocationButton = {true}
+        
         initialRegion = {this.state.initialRegion}
         onRegionChangeComplete = {this.onChangeValue}
         ref ={ref => this.map = ref}
-        />
-       
+        showsMyLocationButton = {true}
+        >
+        {this.mapMarkers()}
+        </MapView>
           
        
       </View>
