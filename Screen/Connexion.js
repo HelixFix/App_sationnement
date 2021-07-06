@@ -44,7 +44,7 @@ export default class Connexion extends React.Component {
                 (tx, { rows }) => {
                   console.log(rows);
                   if (rows._array.length > 0) {
-                    this.props.navigation.navigate("UserHomePage", { username: rows._array[0].name });
+                    this.props.navigation.navigate("CreationEmplacement", { username: rows._array[0].name });
                   } else {
                     alert();
                   }
