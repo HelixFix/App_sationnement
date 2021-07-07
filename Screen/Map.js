@@ -3,10 +3,7 @@ import { Text, View, StyleSheet, Dimensions, Image, ToastAndroid } from "react-n
 import * as Location from "expo-location";
 import MapView from "react-native-map-clustering";
 import { Marker } from "react-native-maps";
-import { data } from "../core/data2.json";
-
-
-
+import data from '../core/data_Mulhouse.json';
 
 
 
@@ -22,9 +19,9 @@ export default class Map extends React.Component {
         latitudeDelta : 0.0922,
         longitudeDelta: Dimensions.get('window').width*0.25 / Dimensions.get('window').height*0.25,
       },
-      marginBottom: 1
-    };
-
+      marginBottom: 1,      
+    }
+    this.mapMarkers=this.mapMarkers.bind(this)
 
   }
 
@@ -51,32 +48,27 @@ export default class Map extends React.Component {
     if (status !== "granted") {
       this.setState({ ErrorMsg: "Permission to access location was denied" });
       return;
-    }
-
- 
+    } 
     let location = await Location.getCurrentPositionAsync({});
     this.setState({ location: location });
-    // console.log(location);
-    
+    // console.log(location);    
   }
 
-  
+
  
-  mapMarkers() {
-    return (
-    data && data.forEach (<Marker
-      key={data.key}
-      coordinate={{ latitude: data.latitude, longitude: data.longitude }}
-      title={data.nbre_place}
-      //description={data.nbre_place}
-    >
-    </Marker >));
+  mapMarkers(element,index) {    
+      return (     
+        <Marker
+          key={index.key}
+          coordinate={{ latitude: index.latitude, longitude: index.longitude }}
+          title={""+index.nbre_place}      
+        >
+        </Marker >)  
   }
 
   render() {
     this.useEffect();
-   
-
+ 
     return (
       <View style={{flex:1,marginBottom : this.state.marginBottom}}>
         <MapView style={styles.map}
@@ -84,12 +76,25 @@ export default class Map extends React.Component {
         showsMyLocationButton = {false}
         initialRegion = {this.state.initialRegion}
         onRegionChangeComplete = {this.onChangeValue}
-        ref ={ref => this.map = ref}
-        
+        //ref ={ref => this.map = ref}        
         >
-        {/* {this.mapMarkers()} */}
-        </MapView>
-          
+
+    {data.map((data, index) => { 
+      const coords = {
+        latitude: data.latitude,
+        longitude: data.longitude,
+    };   
+     return (
+         <Marker
+            key={index}
+            coordinate={coords}
+            title={""+data.nbre_place}
+            description={""+data.nbre_place}
+         />
+     );
+    })}                     
+
+        </MapView>          
        
       </View>
     );
