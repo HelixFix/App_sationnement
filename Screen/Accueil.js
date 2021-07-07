@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, View} from "react-native";
 import Button from "../Components/Button";
 import Title from "../Components/Title";
 import * as SQLite from 'expo-sqlite'
@@ -24,8 +24,6 @@ export default class Accueil extends React.Component {
       }
     );
 
-    // console.log(db);
-    
 
     return (
       <View style={styles.container}>
