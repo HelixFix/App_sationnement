@@ -13,14 +13,14 @@ export default class CreationEmplacement extends React.Component {
         
 
         <Text style = {{ width: "60%", textAlign: "center" }}>
-          Bienvenu {this.props.route.params.username} sur notre application d'inscription connexion
+          Bienvenu {this.props.route.params.username} sur notre application dédiée au stationnement handicapé
           {"\n"}
         </Text>
 
         <Button
           color   = "#ff5c5c"
-          title   = "Caméra"
-          onPress = {() => navigate("Camera")}
+          title   = "Déclarer emplacement"
+          onPress = {() => navigate("Declaration")}
         />
 
         <Button
