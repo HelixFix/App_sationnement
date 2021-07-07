@@ -33,9 +33,9 @@ export default class Map extends React.Component {
 
 
   onChangeValue = initialRegion =>{
-    //var mapRef = useRef();
+    var mapRef = useRef();
     // alert(JSON.stringify(region))
-    //mapRef.current.onChangeValue(initialRegion, 2000)
+    mapRef.current.onChangeValue(initialRegion, 2000)
     //ToastAndroid.show(JSON.stringify(initialRegion),ToastAndroid.SHORT)
     this.setState({
       initialRegion

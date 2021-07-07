@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 
-export default class Camera extends React.Component {
+export default class Camera_use extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
