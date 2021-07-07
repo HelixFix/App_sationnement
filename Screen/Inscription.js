@@ -24,6 +24,12 @@ export default class Inscription extends React.Component {
     };
   }
 
+  alerte() {
+    Alert.alert("Erreur", "Veuillez remplir correctement les champs", [
+      { text: "OK", onPress: () => console.log("OK Pressed") },
+    ]);
+  }
+
   onSignUpPressed() {
     console.log("click");
     console.log(db);
@@ -37,21 +43,8 @@ export default class Inscription extends React.Component {
 
     if (nameError || emailError || passwordError) {
       this.alerte();
-      return;
     } 
-    // else { // Méthode redux
-    //   const action = {
-    //     type : "ADD_USER",
-    //     value: {
-    //       name    : this.state.name,
-    //       email   : this.state.email,
-    //       password: this.state.password,
-    //     },
-    //   };
-
-    //   this.props.dispatch(action);
-    //   this.props.navigation.navigate("LoginScreen");
-    // }
+  
     else { // Méthode SQLite
       db.transaction (
         tx => {
@@ -71,11 +64,7 @@ export default class Inscription extends React.Component {
     
     // console.log(db);
 
-    function alerte() {
-      Alert.alert("Erreur", "Veuillez remplir correctement les champs", [
-        { text: "OK", onPress: () => console.log("OK Pressed") },
-      ]);
-    }
+
 
  
 

@@ -7,10 +7,12 @@ import MotDePasseOublie from "./Screen/MotDePasseOublie"
 import Inscription from "./Screen/Inscription";
 import CreationEmplacement from "./Screen/CreationEmplacement";
 import Reglementation from "./Screen/Reglementation";
-import Camera from "./Screen/Camera";
+import Photo from "./Screen/Photo";
+import Declaration from "./Screen/Declaration";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import CustomMap from "./Screen/CustomMap.js";
 
 
 const Stack = createStackNavigator();
@@ -29,7 +31,9 @@ const App = () => {
         <Stack.Screen name = "Registerscreen" component      = {Inscription} />
         <Stack.Screen name = "Map" component                 = {Map} />
         <Stack.Screen name = "RGPD" component                = {RGPD} />
-        <Stack.Screen name = "Camera" component              = {Camera} />
+        <Stack.Screen name = "Photo" component              = {Photo} />
+        <Stack.Screen name = "Declaration" component         = {Declaration} />
+        <Stack.Screen name = "CustomMap" component         = {CustomMap} />
 
         </Stack.Navigator>
       </NavigationContainer>

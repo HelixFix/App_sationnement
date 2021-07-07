@@ -19,6 +19,16 @@ export const nameValidator = (name) => {
   return false;
 };
 
+export const nbValidator = (nb) => {
+  if (!nb || nb.length === 0 || typeof nb != "number") return true;
+  return false;
+};
+
+export const nboptValidator = (nb) => {
+  if (typeof nb != "number") return true;
+  return false;
+};
+
 export const _goToURL = (url) => {
   
   Linking.canOpenURL(url).then(supported => {

@@ -1,13 +1,11 @@
 import React from "react";
-import { View, StyleSheet, Dimensions, ToastAndroid } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import * as Location from "expo-location";
 import MapView from "react-native-map-clustering";
-import { Marker } from "react-native-maps";
-import data from '../core/data_Mulhouse.json';
 
 
 
-export default class Map extends React.Component {
+export default class CustomMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,22 +25,33 @@ export default class Map extends React.Component {
 
 
   componentDidMount() {
-    // this.handleUserLocation();
     setTimeout(()=>this.setState({marginBottom : 0}),100);
   }
 
 
   onChangeValue = initialRegion =>{
-    //var mapRef = useRef();
-    // alert(JSON.stringify(region))
-    //mapRef.current.onChangeValue(initialRegion, 2000)
-    //ToastAndroid.show(JSON.stringify(initialRegion),ToastAndroid.SHORT)
+
     this.setState({
       initialRegion
     });
   }
 
+emplacement_DB() {
+    db.transaction((tx) => {
+        tx.executeSql(
+          "SELECT * FROM emplacements",
+          (tx, { rows }) => {
+            console.log(rows);
+          },
+          (tx, error) => {
+            console.log("erreur de traitement");
+          }
+        );
+      });
+}
+
   async useEffect() {
+
     let { status } = await Location.requestForegroundPermissionsAsync();
     console.log(status);
     if (status !== "granted") {

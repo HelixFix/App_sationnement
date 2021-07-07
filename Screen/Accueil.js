@@ -12,6 +12,7 @@ export default class Accueil extends React.Component {
 
     db.transaction (tx => {
       tx.executeSql("create table if not exists user (id integer primary key not null, name text, mail text, mdp text);")
+      tx.executeSql("create table if not exists emplacements (id integer primary key not null, num integer, rue text, ville text, nb_place integre, type_stat text, comment text, photo text);")
     });
 
     db.transaction (
@@ -50,7 +51,7 @@ export default class Accueil extends React.Component {
 
       <Button
           color   = "#ff5c5c"
-          title   = "Navigation"
+          title   = "Autour de moi"
           onPress = {() => navigate("Map")}
         />
       </View>
