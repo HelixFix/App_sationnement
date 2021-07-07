@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Text, View, StyleSheet, Dimensions, Image, ToastAndroid } from "react-native";
 import * as Location from "expo-location";
-import MapView from "react-native-maps";
+import MapView from "react-native-map-clustering";
 import { Marker } from "react-native-maps";
-import { data } from "../core/data_Mulhouse.json";
+import { data } from "../core/data2.json";
+
+
+
+
 
 
 export default class Map extends React.Component {
@@ -27,16 +31,18 @@ export default class Map extends React.Component {
 
   componentDidMount() {
     // this.handleUserLocation();
-    setTimeout(()=>this.setState({marginBottom : 0}),100)
+    setTimeout(()=>this.setState({marginBottom : 0}),100);
   }
 
 
   onChangeValue = initialRegion =>{
+    //var mapRef = useRef();
     // alert(JSON.stringify(region))
-    ToastAndroid.show(JSON.stringify(initialRegion),ToastAndroid.SHORT)
+    //mapRef.current.onChangeValue(initialRegion, 2000)
+    //ToastAndroid.show(JSON.stringify(initialRegion),ToastAndroid.SHORT)
     this.setState({
       initialRegion
-    })
+    });
   }
 
   async useEffect() {
@@ -53,33 +59,35 @@ export default class Map extends React.Component {
     // console.log(location);
     
   }
+
+  
  
   mapMarkers() {
     return (
     data && data.forEach (<Marker
       key={data.key}
-      coordinates={{ latitude: data.latitude, longitude: data.longitude }}
+      coordinate={{ latitude: data.latitude, longitude: data.longitude }}
       title={data.nbre_place}
       //description={data.nbre_place}
     >
-    </Marker >))
+    </Marker >));
   }
 
   render() {
-    this.useEffect()
-   console
+    this.useEffect();
+   
 
     return (
       <View style={{flex:1,marginBottom : this.state.marginBottom}}>
         <MapView style={styles.map}
         showsUserLocation = {true}
-        
+        showsMyLocationButton = {false}
         initialRegion = {this.state.initialRegion}
         onRegionChangeComplete = {this.onChangeValue}
         ref ={ref => this.map = ref}
-        showsMyLocationButton = {true}
+        
         >
-        {this.mapMarkers()}
+        {/* {this.mapMarkers()} */}
         </MapView>
           
        
