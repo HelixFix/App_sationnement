@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@monchilin/react-native-dropdown": "^0.2.3",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-picker/picker": "^1.16.3",
     "@react-navigation/native": "^5.9.4",

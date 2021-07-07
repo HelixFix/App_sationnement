@@ -5,7 +5,7 @@ import Button from "../Components/Button";
 import TexteInput from "../Components/TexteInput";
 import {nameValidator, nboptValidator, nbValidator} from "../core/utils";
 import * as SQLite from 'expo-sqlite';
-//import { Dropdown } from 'react-native-material-dropdown-v2-fixed';
+import ModalDropdown from '@monchilin/react-native-dropdown';
 
 
 
@@ -98,12 +98,16 @@ export default class Declaration extends React.Component {
           onChangeText = {(text) => this.setState({ nb_place: text })}
         />
 
-        {/* <Dropdown
-        icon='chevron-down'
-        iconColor='#E1E1E1'
-        label='Favorite Fruit'
-        data={data}
-      /> */}
+        <ModalDropdown 
+        defaultLabel={'CHOISIR'}
+        dataSource={['Créneau', 'Bataille', 'Epi avant', 'Epi arrière']} 
+        labelStyle={{ fontSize: 20 }}
+        itemLabelStyle={{ fontSize: 20 }}
+        />
+        
+
+       
+          
 
 
         <View style = {styles.buttonContainer}>
