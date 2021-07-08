@@ -39,8 +39,8 @@ export default class CustomMap extends React.Component {
 
   onMapPress(e) {
 
-    const latitude = e.nativeEvent.coordinate.latitude;
-    const longitude = e.nativeEvent.coordinate.longitude;
+    const latitude     = e.nativeEvent.coordinate.latitude;
+    const longitude    = e.nativeEvent.coordinate.longitude;
     const { navigate } = this.props.navigation;
 
 
@@ -80,7 +80,7 @@ emplacement_DB() {
       return;
     } 
     let location = await Location.getCurrentPositionAsync({});
-    let geocode = await Location.reverseGeocodeAsync(location.coords);
+    let geocode  = await Location.reverseGeocodeAsync(location.coords);
    
     this.setState({ location: location });
     this.setState({ street: geocode[0].street });
