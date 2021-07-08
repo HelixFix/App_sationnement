@@ -9,9 +9,10 @@ export default class CustomMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: null,
-      ErrorMsg: null,
-      initialRegion  : {
+      location     : null,
+      ErrorMsg     : null,
+      street       : null,
+      initialRegion: {
         latitude      : 47.7471564615,
         longitude     : 7.32070858826,
         latitudeDelta : 0.0922,
@@ -31,22 +32,17 @@ export default class CustomMap extends React.Component {
 
   onChangeValue = initialRegion =>{
 
-    // console.log(JSON.stringify(initialRegion));
-    // console.log("latitude "+initialRegion.latitude);
-    
-    
-
     this.setState({
       initialRegion
     });
   }
 
   onMapPress(e) {
-    // alert("coordinates:" + JSON.stringify(e.nativeEvent.coordinate.latitude));
+
     const latitude = e.nativeEvent.coordinate.latitude;
     const longitude = e.nativeEvent.coordinate.longitude;
     const { navigate } = this.props.navigation;
-  
+
 
     this.setState({
       marker: [
@@ -56,7 +52,7 @@ export default class CustomMap extends React.Component {
       ]
     });
 
-    navigate("Declaration", { latitude: latitude, longitude: longitude });
+    navigate("Declaration", { latitude: latitude, longitude: longitude, street: this.state.street });
 
 
   }
@@ -78,14 +74,17 @@ emplacement_DB() {
   async useEffect() {
 
     let { status } = await Location.requestForegroundPermissionsAsync();
-    // console.log(status);
+ 
     if (status !== "granted") {
       this.setState({ ErrorMsg: "Permission to access location was denied" });
       return;
     } 
     let location = await Location.getCurrentPositionAsync({});
+    let geocode = await Location.reverseGeocodeAsync(location.coords);
+   
     this.setState({ location: location });
-    // console.log(location);    
+    this.setState({ street: geocode[0].street });
+    
   }
  
   mapMarkers(element,index) {    
@@ -100,7 +99,7 @@ emplacement_DB() {
 
   render() {
     this.useEffect();
- 
+   
     return (
       <View style={{flex:1,marginBottom : this.state.marginBottom}}>
 
