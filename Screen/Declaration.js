@@ -14,7 +14,7 @@ export default class Declaration extends React.Component {
     super(props);
 
     this.state = {
-      rue      : "",
+      rue      : ""+this.props.route.params.street,
       num      : "",
       ville    : "Mulhouse",
       nb_place : "",
