@@ -31,9 +31,34 @@ export default class CustomMap extends React.Component {
 
   onChangeValue = initialRegion =>{
 
+    // console.log(JSON.stringify(initialRegion));
+    // console.log("latitude "+initialRegion.latitude);
+    
+    
+
     this.setState({
       initialRegion
     });
+  }
+
+  onMapPress(e) {
+    // alert("coordinates:" + JSON.stringify(e.nativeEvent.coordinate.latitude));
+    const latitude = e.nativeEvent.coordinate.latitude;
+    const longitude = e.nativeEvent.coordinate.longitude;
+    const { navigate } = this.props.navigation;
+  
+
+    this.setState({
+      marker: [
+        {
+          coordinate: e.nativeEvent.coordinate
+        }
+      ]
+    });
+
+    navigate("Declaration", { latitude: latitude, longitude: longitude });
+
+
   }
 
 emplacement_DB() {
@@ -47,13 +72,13 @@ emplacement_DB() {
             console.log("erreur de traitement");
           }
         );
-      });
+    });
 }
 
   async useEffect() {
 
     let { status } = await Location.requestForegroundPermissionsAsync();
-    console.log(status);
+    // console.log(status);
     if (status !== "granted") {
       this.setState({ ErrorMsg: "Permission to access location was denied" });
       return;
@@ -84,10 +109,11 @@ emplacement_DB() {
                  showsMyLocationButton  = {true}
                  initialRegion          = {this.state.initialRegion}
                  onRegionChangeComplete = {this.onChangeValue}
+                 onPress                = {this.onMapPress.bind(this)}
         //ref ={ref => this.map = ref}        
         >
 
-    {data.map((marker, index) => { 
+    {/* {data.map((marker, index) => { 
       const coords = {
         latitude: marker.latitude,
         longitude: marker.longitude,
@@ -100,7 +126,7 @@ emplacement_DB() {
             
          />
      );
-    })}                     
+    })}                      */}
 
         </MapView>          
        

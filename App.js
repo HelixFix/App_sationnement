@@ -22,18 +22,18 @@ const App = () => {
  
       <NavigationContainer>
         <Stack.Navigator>
-        <Stack.Screen name = "Declaration" component         = {Declaration} />
-        <Stack.Screen name = "Accueil" component             = {Accueil} />
-        <Stack.Screen name = "LoginScreen" component         = {Connexion} />
-        <Stack.Screen name = "ForgotPW" component            = {MotDePasseOublie} />
-        <Stack.Screen name = "CreationEmplacement" component = {CreationEmplacement} />
-        <Stack.Screen name = "Reglementation" component      = {Reglementation} />
-        <Stack.Screen name = "Registerscreen" component      = {Inscription} />
-        <Stack.Screen name = "Map" component                 = {Map} />
-        <Stack.Screen name = "RGPD" component                = {RGPD} />
-        <Stack.Screen name = "Photo" component              = {Photo} />
-        
-        <Stack.Screen name = "CustomMap" component         = {CustomMap} />
+        <Stack.Screen name = "CustomMap"           component = {CustomMap} />
+          <Stack.Screen name = "Accueil"             component = {Accueil} />
+          <Stack.Screen name = "LoginScreen"         component = {Connexion} />
+          <Stack.Screen name = "ForgotPW"            component = {MotDePasseOublie} />
+          <Stack.Screen name = "CreationEmplacement" component = {CreationEmplacement} />
+          <Stack.Screen name = "Reglementation"      component = {Reglementation} />
+          <Stack.Screen name = "Registerscreen"      component = {Inscription} />
+          <Stack.Screen name = "Map"                 component = {Map} />
+          <Stack.Screen name = "RGPD"                component = {RGPD} />
+          <Stack.Screen name = "Photo"               component = {Photo} />
+          <Stack.Screen name = "Declaration"         component = {Declaration} />
+          
 
         </Stack.Navigator>
       </NavigationContainer>

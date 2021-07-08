@@ -19,8 +19,8 @@ export default class Declaration extends React.Component {
       ville    : "Mulhouse",
       nb_place : "",
       type_stat: "",
-      latitude : "",
-      longitude: "",
+      latitude : ""+this.props.route.params.latitude,
+      longitude: ""+this.props.route.params.longitude,
       comment  : "",
     };
   }
@@ -51,7 +51,6 @@ export default class Declaration extends React.Component {
           [this.state.num, this.state.rue, this.state.ville, this.state.nb_place, this.state.type_stat, this.state.comment, this.state.photo])
         }
       );
-      this.props.navigation.navigate("CustomMap");
     }
   }
 
@@ -61,20 +60,27 @@ export default class Declaration extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
 
-
     return (
       
       <View style={styles.container}>
         <ScrollView style={styles.scrollView}>
         <View style={styles.container}>
-        <Title title = "Déclaration" />
+        <Title title = "Déclaration" /> 
+
+        <TexteInput
+          placeholder  = "Latitude"
+          value        = {this.state.latitude} 
+        />
+
+        <TexteInput
+          placeholder  = "Longitude"
+          value        = {this.state.longitude}          
+        />
 
         <TexteInput
           readonly     = "true"
-          placeholder  = "Ville"
-          
-          value        = {this.state.ville}
-          onChangeText = {(text) => this.setState({ ville: text })}
+          placeholder  = "Ville"          
+          value        = {this.state.ville}          
         />
 
         <TextInput
@@ -122,7 +128,7 @@ export default class Declaration extends React.Component {
         />
 
         <ModalDropdown 
-        defaultLabel={'Type stationnement'}
+        defaultLabel={'Type stationnement ˅'}
         dataSource={['Créneau', 'Bataille', 'Epi avant', 'Epi arrière']} 
         labelStyle={{ fontSize: 14 }}
         itemLabelStyle={{ fontSize: 14 }}

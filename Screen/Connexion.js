@@ -1,6 +1,6 @@
 import React from "react";
 import Title from "../Components/Title";
-import { Alert, StyleSheet, TouchableOpacity, View, Text } from "react-native";
+import { Alert, StyleSheet,View, Text } from "react-native";
 import Button from "../Components/Button";
 import EmailInput from "../Components/EmailInput";
 import PasswordInput from "../Components/PasswordInput";
@@ -18,7 +18,7 @@ export default class Connexion extends React.Component {
   }
 
   
-  // console.log(db);
+
 
   // Méthode SQLite
    alerte() {
@@ -34,7 +34,6 @@ export default class Connexion extends React.Component {
   
       if (emailError || passwordError) {
         this.alerte();
-        return;
       } else {
         return new Promise((resolver, reject) => {
             db.transaction((tx) => {
@@ -61,47 +60,6 @@ export default class Connexion extends React.Component {
 
 
 
-
-//   onLoginPressed() {
-//     const emailError    = emailValidator(this.state.email);
-//     const passwordError = passwordValidator(this.state.password);
-
-//     if (emailError || passwordError) {
-//       this.alerte();
-//       return;
-//     }
-
-//     const { users } = this.props;
-
-//     var userConnect = false;
-
-//     // Méthode Redux
-//     // for (var i = 0; i < users.length; i++) {
-//     //   if (
-//     //     users[i].email    == this.state.email &&
-//     //     users[i].password == this.state.password
-//     //   ) {
-
-//     //     userConnect = true;
-
-//     //     this.props.navigation.navigate("UserHomePage", {
-//     //       username: users[i].name,
-//     //     });
-//     //   }
-//     // }
-
-
-
-//     if (userConnect == false) {
-//       Alert.alert(
-//         "Erreur",
-//         "L'email ou le mot de passe est incorrect",
-//         [{ text: "OK", onPress: () => console.log("OK Pressed") }],
-//         { cancelable: false }
-//       );
-//     }
-//   }
-
   render() {
     const { navigate } = this.props.navigation;
 
@@ -118,10 +76,6 @@ export default class Connexion extends React.Component {
           value        = {this.state.password}
           onChangeText = {(text) => this.setState({ password: text })}
         />
-
-        {/* <TouchableOpacity onPress={() => navigate("LoginScreen")}>
-          <Text color = "#ff5c5c">Connexion</Text>
-        </TouchableOpacity> */}
 
         <Button
           color   = "#841584"

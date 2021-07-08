@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert, Image } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { Camera } from 'expo-camera';
-import { render } from 'react-dom';
 
 export default class Photo extends React.Component {
     constructor(props) {

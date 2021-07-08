@@ -27,15 +27,12 @@ export default class Map extends React.Component {
 
 
   componentDidMount() {
-    // this.handleUserLocation();
     setTimeout(()=>this.setState({marginBottom : 0}),100);
   }
 
 
   onChangeValue = initialRegion =>{
-    //var mapRef = useRef();
-    // alert(JSON.stringify(region))
-    //mapRef.current.onChangeValue(initialRegion, 2000)
+  
     //ToastAndroid.show(JSON.stringify(initialRegion),ToastAndroid.SHORT)
     this.setState({
       initialRegion
@@ -74,8 +71,7 @@ export default class Map extends React.Component {
                  showsUserLocation      = {true}
                  showsMyLocationButton  = {true}
                  initialRegion          = {this.state.initialRegion}
-                 onRegionChangeComplete = {this.onChangeValue}
-        //ref ={ref => this.map = ref}        
+                 onRegionChangeComplete = {this.onChangeValue}     
         >
 
     {data.map((marker, index) => { 
