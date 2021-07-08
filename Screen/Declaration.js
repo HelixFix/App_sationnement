@@ -3,11 +3,11 @@ import Title from "../Components/Title";
 import { StyleSheet, View, TextInput, Alert, Text, Image, ScrollView, Dimensions } from "react-native";
 import Button from "../Components/Button";
 import TexteInput from "../Components/TexteInput";
-import {nameValidator, nboptValidator, nbValidator} from "../core/utils";
+import {nameValidator, nboptValidator, nbValidator, typeValidator} from "../core/utils";
 import * as SQLite from 'expo-sqlite';
 import ModalDropdown from '@monchilin/react-native-dropdown';
 
-
+const dataSource=['Créneau','Bataille', 'Epi avant', 'Epi arrière'] ;
 
 export default class Declaration extends React.Component {
   constructor(props) {
@@ -19,20 +19,20 @@ export default class Declaration extends React.Component {
       ville    : "Mulhouse",
       nb_place : "",
       type_stat: "",
-      latitude : ""+this.props.route.params.latitude,
-      longitude: ""+this.props.route.params.longitude,
+      latitude : "",//+this.props.route.params.latitude,
+      longitude: "",//+this.props.route.params.longitude,
       comment  : "",
     };
   }
 
   alerte() {
-    Alert.alert("Erreur", "Veuillez remplir les champs avec *", [
+    Alert.alert("Erreur", "Veuillez remplir les champs en rouge", [
       { text: "OK", onPress: () => console.log("OK Pressed") },
     ]);
   }
 
   onSavePressed() {
-    const typestatError = nameValidator(this.state.type_stat);
+    const typestatError = typeValidator(this.state.type_stat);
     const rueError      = nameValidator(this.state.rue);
     const numError      = nboptValidator(this.state.num);
     const nbplaceError  = nbValidator(this.state.nb_place);
@@ -40,7 +40,7 @@ export default class Declaration extends React.Component {
     const db            = SQLite.openDatabase("database.db");
    
 
-    if (rueError || numError || nbplaceError || typestatError) {
+    if (rueError || nbplaceError || numError || typestatError) {
       this.alerte();
     } 
   
@@ -68,11 +68,13 @@ export default class Declaration extends React.Component {
         <Title title = "Déclaration" /> 
 
         <TexteInput
+          readonly     = "true"
           placeholder  = "Latitude"
           value        = {this.state.latitude} 
         />
 
         <TexteInput
+          readonly     = "true"
           placeholder  = "Longitude"
           value        = {this.state.longitude}          
         />
@@ -108,7 +110,7 @@ export default class Declaration extends React.Component {
           }}
           placeholder  = "Numéro"
           value        = {this.state.num}
-          onChangeText = {(text) => this.setState({ num: text })}
+          onChangeText = {(text) => this.setState({ num: parseInt(text) })}
         />
 
 
@@ -124,14 +126,15 @@ export default class Declaration extends React.Component {
                 }}          
           placeholder  = "Nombre de place"
           value        = {this.state.nb_place}
-          onChangeText = {(text) => this.setState({ nb_place: text })}
+          onChangeText = {(text) => this.setState({ nb_place: parseInt(text) })}
         />
 
         <ModalDropdown 
-        defaultLabel={'Type stationnement ˅'}
-        dataSource={['Créneau', 'Bataille', 'Epi avant', 'Epi arrière']} 
-        labelStyle={{ fontSize: 14 }}
+        defaultLabel={'Type stationnement  ˅'}
+        dataSource={['Créneau','Bataille', 'Epi avant', 'Epi arrière']} 
+        labelStyle={{ fontSize: 14, color: "red" }}
         itemLabelStyle={{ fontSize: 14 }}
+        onSelect = {(index) => this.setState({ type_stat: dataSource[index] })}
         />    
 
               
