@@ -14,7 +14,7 @@ export default class Title extends Component {
         <Text style={styles.titleText}>
           {title}
           {"\n"}
-          {"\n"}
+          
         </Text>
       </View>
     );
