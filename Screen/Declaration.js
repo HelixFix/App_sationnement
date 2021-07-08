@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Title from "../Components/Title";
 import { StyleSheet, View, Text, Alert, Image } from "react-native";
 import Button from "../Components/Button";
@@ -38,7 +38,7 @@ export default class Declaration extends React.Component {
     const nbplaceError  = nbValidator(this.state.nb_place);
 
     const db            = SQLite.openDatabase("database.db");
-    //var user = [];
+   
 
     if (rueError || numError || nbplaceError || typestatError) {
       this.alerte();
@@ -60,11 +60,6 @@ export default class Declaration extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    let data = [
-      {      value: 'Banana',    },
-      {      value: 'Mango',    },
-      {      value: 'Pear',    }];   
-
 
 
     return (
