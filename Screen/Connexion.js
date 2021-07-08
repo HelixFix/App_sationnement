@@ -77,10 +77,6 @@ export default class Connexion extends React.Component {
           onChangeText = {(text) => this.setState({ password: text })}
         />
 
-        {/* <TouchableOpacity onPress={() => navigate("LoginScreen")}>
-          <Text color = "#ff5c5c">Connexion</Text>
-        </TouchableOpacity> */}
-
         <Button
           color   = "#841584"
           title   = "Connexion"
