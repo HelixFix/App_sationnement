@@ -112,21 +112,6 @@ emplacement_DB() {
         //ref ={ref => this.map = ref}        
         >
 
-    {/* {data.map((marker, index) => { 
-      const coords = {
-        latitude: marker.latitude,
-        longitude: marker.longitude,
-    };   
-     return (
-         <Marker
-            key        = {index}
-            coordinate = {coords}
-            title      = {""+data.nbre_place}
-            
-         />
-     );
-    })}                      */}
-
         </MapView>          
        
       </View>

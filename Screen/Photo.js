@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 
 export default class Photo extends React.Component {
@@ -29,6 +29,7 @@ export default class Photo extends React.Component {
     };
 
     render() {
+        const { navigate } = this.props.navigation;
         this.useEffect();
         if (this.state.hasPermission == "null") {
             return <View />;
@@ -62,12 +63,18 @@ export default class Photo extends React.Component {
                             }}>
                             <Text style={styles.text}> photo </Text>
                         </TouchableOpacity>
+                        <Button
+                            color   = "#841584"
+                            title   = "Position"
+                            onPress={() => navigate("CustomMap")}
+                        />
                     </View>
                 </Camera>
                 <View style={styles.camera}>
                     <Image style={{ flex: 1 }} source={{ uri:this.state.uri ? this.state.uri:'https://reactnative.dev/img/tiny_logo.png' }}>
                     </Image>
                 </View>
+
 
             </View>
         );

@@ -21,7 +21,7 @@ export default class Map extends React.Component {
       },
       marginBottom: 1,      
     }
-    this.mapMarkers=this.mapMarkers.bind(this)
+    //this.mapMarkers=this.mapMarkers.bind(this)
 
   }
 
@@ -51,15 +51,15 @@ export default class Map extends React.Component {
     // console.log(location);    
   }
  
-  mapMarkers(element,index) {    
-      return (     
-        <Marker
-          key={index.key}
-          coordinate={{ latitude: index.latitude, longitude: index.longitude }}
-          title={""+index.nbre_place}      
-        >
-        </Marker >)  
-  }
+  // mapMarkers(element,index) {    
+  //     return (     
+  //       <Marker
+  //         key={index.key}
+  //         coordinate={{ latitude: index.latitude, longitude: index.longitude }}
+  //         title={""+index.nbre_place}      
+  //       >
+  //       </Marker >)  
+  // }
 
   render() {
     this.useEffect();
@@ -83,7 +83,7 @@ export default class Map extends React.Component {
          <Marker
             key        = {index}
             coordinate = {coords}
-            title      = {""+data.nbre_place}
+            title      = {"Place(s): "+marker.nbre_place}
             
          />
      );

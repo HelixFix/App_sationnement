@@ -19,8 +19,8 @@ export default class Declaration extends React.Component {
       ville    : "Mulhouse",
       nb_place : "",
       type_stat: "",
-      latitude : "",//+this.props.route.params.latitude,
-      longitude: "",//+this.props.route.params.longitude,
+      latitude : ""+this.props.route.params.latitude,
+      longitude: ""+this.props.route.params.longitude,
       comment  : "",
     };
   }
@@ -34,13 +34,13 @@ export default class Declaration extends React.Component {
   onSavePressed() {
     const typestatError = typeValidator(this.state.type_stat);
     const rueError      = nameValidator(this.state.rue);
-    const numError      = nboptValidator(this.state.num);
+    //const numError      = nboptValidator(this.state.num);
     const nbplaceError  = nbValidator(this.state.nb_place);
 
     const db            = SQLite.openDatabase("database.db");
    
 
-    if (rueError || nbplaceError || numError || typestatError) {
+    if (rueError || nbplaceError || typestatError) {
       this.alerte();
     } 
   
@@ -51,6 +51,7 @@ export default class Declaration extends React.Component {
           [this.state.num, this.state.rue, this.state.ville, this.state.nb_place, this.state.type_stat, this.state.comment, this.state.photo])
         }
       );
+      this.props.navigation.navigate("CreationEmplacement");
     }
   }
 
@@ -58,7 +59,7 @@ export default class Declaration extends React.Component {
   
 
   render() {
-    const { navigate } = this.props.navigation;
+    
 
     return (
       
@@ -109,8 +110,9 @@ export default class Declaration extends React.Component {
             padding    : 10,
           }}
           placeholder  = "Numéro"
+          keyboardType='numeric'
           value        = {this.state.num}
-          onChangeText = {(text) => this.setState({ num: parseInt(text) })}
+          onChangeText = {(text) => this.setState({ num: text })}
         />
 
 
@@ -125,8 +127,9 @@ export default class Declaration extends React.Component {
                   padding    : 10,
                 }}          
           placeholder  = "Nombre de place"
+          keyboardType='numeric'
           value        = {this.state.nb_place}
-          onChangeText = {(text) => this.setState({ nb_place: parseInt(text) })}
+          onChangeText = {(text) => this.setState({ nb_place: text })}
         />
 
         <ModalDropdown 
