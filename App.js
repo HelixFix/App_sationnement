@@ -22,7 +22,7 @@ const App = () => {
  
       <NavigationContainer>
         <Stack.Navigator>
-        
+        <Stack.Screen name = "CustomMap"           component = {CustomMap} />
           <Stack.Screen name = "Accueil"             component = {Accueil} />
           <Stack.Screen name = "LoginScreen"         component = {Connexion} />
           <Stack.Screen name = "ForgotPW"            component = {MotDePasseOublie} />
@@ -33,7 +33,7 @@ const App = () => {
           <Stack.Screen name = "RGPD"                component = {RGPD} />
           <Stack.Screen name = "Photo"               component = {Photo} />
           <Stack.Screen name = "Declaration"         component = {Declaration} />
-          <Stack.Screen name = "CustomMap"           component = {CustomMap} />
+          
 
         </Stack.Navigator>
       </NavigationContainer>
