@@ -10,7 +10,6 @@
   "dependencies": {
     "@monchilin/react-native-dropdown": "^0.2.3",
     "@react-native-community/masked-view": "0.1.10",
-    "@react-native-picker/picker": "1.9.11",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
     "expo": "~41.0.1",
@@ -24,8 +23,6 @@
     "react-native-gesture-handler": "~1.10.2",
     "react-native-map-clustering": "^3.4.2",
     "react-native-maps": "^0.27.1",
-    "react-native-material-dropdown": "^0.11.1",
-    "react-native-material-dropdown-v2-fixed": "^0.11.3",
     "react-native-reanimated": "~2.1.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.0.0",
