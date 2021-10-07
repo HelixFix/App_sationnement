@@ -14,7 +14,7 @@ export default class Title extends Component {
         <Text style={styles.titleText}>
           {title}
           {"\n"}
-          {"\n"}
+          
         </Text>
       </View>
     );
@@ -26,7 +26,5 @@ const styles = StyleSheet.create({
     fontSize  : 20,
     fontWeight: "bold",
     color     : "#800080",
-    fontWeight: "bold",
-    fontSize  : 25,
   },
 });

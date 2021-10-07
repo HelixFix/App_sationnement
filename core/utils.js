@@ -19,6 +19,22 @@ export const nameValidator = (name) => {
   return false;
 };
 
+export const typeValidator = (typestat) => {
+  console.log(typeof typestat);
+  if (typestat ==='Créneau' || typestat ==='Bataille' || typestat ==='Epi avant' || typestat ==='Epi arrière') return false;
+  return true;
+};
+
+export const nbValidator = (nb) => {  
+  if (!nb || nb.length === 0) return true;
+  return false;
+};
+
+// export const nboptValidator = (nb) => {  
+//   if ((typeof nb) != "number") return true;
+//   return false;
+// };
+
 export const _goToURL = (url) => {
   
   Linking.canOpenURL(url).then(supported => {

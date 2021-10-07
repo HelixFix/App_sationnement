@@ -10,10 +10,10 @@ import {
   nameValidator,
   passwordValidator,
 } from "../core/utils";
-import { connect } from "react-redux";
 import * as SQLite from 'expo-sqlite'
 
-class Inscription extends React.Component {
+
+export default class Inscription extends React.Component {
   constructor(props) {
     super(props);
 
@@ -22,6 +22,12 @@ class Inscription extends React.Component {
       email   : "",
       password: "",
     };
+  }
+
+  alerte() {
+    Alert.alert("Erreur", "Veuillez remplir correctement les champs", [
+      { text: "OK", onPress: () => console.log("OK Pressed") },
+    ]);
   }
 
   onSignUpPressed() {
@@ -37,21 +43,8 @@ class Inscription extends React.Component {
 
     if (nameError || emailError || passwordError) {
       this.alerte();
-      return;
     } 
-    // else { // Méthode redux
-    //   const action = {
-    //     type : "ADD_USER",
-    //     value: {
-    //       name    : this.state.name,
-    //       email   : this.state.email,
-    //       password: this.state.password,
-    //     },
-    //   };
-
-    //   this.props.dispatch(action);
-    //   this.props.navigation.navigate("LoginScreen");
-    // }
+  
     else { // Méthode SQLite
       db.transaction (
         tx => {
@@ -71,11 +64,7 @@ class Inscription extends React.Component {
     
     // console.log(db);
 
-    function alerte() {
-      Alert.alert("Erreur", "Veuillez remplir correctement les champs", [
-        { text: "OK", onPress: () => console.log("OK Pressed") },
-      ]);
-    }
+
 
  
 
@@ -136,9 +125,3 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state) => {
-  return state;
-};
-
-// React autorise uniquement un export default par page
-export default connect(mapStateToProps)(Inscription);
